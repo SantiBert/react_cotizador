@@ -2,8 +2,8 @@ html {
   box-sizing: border-box;
 }
 body {
-  background: rgb(4,4,205);
-  background: linear-gradient(90deg, rgba(4,4,205,1) 35%, rgba(0,212,255,1) 100%);
+  background: rgb(118,210,137);
+  background: linear-gradient(90deg, rgba(118,210,137,1) 35%, rgba(249,248,113,1) 100%);
   font-family: Arial, Helvetica, sans-serif;
 }
 ul {
