@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { getAnnualDifference, calculateBrand, getPlan } from '../helper';
+import PropTypes from 'prop-types';
 
 
 const Field = styled.div`
@@ -25,6 +26,15 @@ const Input = styled.input`
     margin: 0 1rem;
 `;
 
+const Error = styled.div`
+    background-color: red;
+    color: white;
+    padding: 1rem;
+    width:100%;
+    text-align: center;
+    margin-bottom: 2rem;
+`;
+
 const Botton = styled.button`
     background-color:#00838f;
     font-size: 16px;
@@ -42,7 +52,7 @@ const Botton = styled.button`
     }
 `;
 
-const Form = () => {
+const Form = ({setResume, setLoad}) => {
 
     const [data, setData] = useState({
         marca: '',
@@ -93,13 +103,26 @@ const Form = () => {
         const costPlan = getPlan(plan);
         result = parseFloat(costPlan * result).toFixed(2);
         //Total
-        console.log(result);
+
+        //cargando
+        setLoad(true);
+
+        setTimeout(() => {
+            //cargando
+            setLoad(false);
+
+            setResume({
+                cotization: result,
+                data
+            });
+        }, 3000);
     }
 
     return (
         <form
             onSubmit={handleSubmit}
         >
+            { error ? <Error>Todos los campos son obligatorios</Error>  : null }
             <Field>
                 <Label>Marca</Label>
                 <Select
@@ -157,6 +180,11 @@ const Form = () => {
             </Botton>
         </form>
     );
+}
+
+Form.propType={
+    setLoad: PropTypes.func.isRequired,
+    getData: PropTypes.func.isRequired
 }
 
 export default Form;
