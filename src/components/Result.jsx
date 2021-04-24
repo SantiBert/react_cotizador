@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
-import { Transition , CSSTransition } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import PropTypes from 'prop-types';
 
 
-const Result = ({cotization}) => {
-   
+const Result = ({ cotization }) => {
+
     const Message = styled.p`
         background-color: rgb(127, 224, 237);
         margin-top:2rem;
@@ -21,7 +22,7 @@ const Result = ({cotization}) => {
         position: relative;
     `;
 
-    const TextCotizador = styled.p `
+    const TextCotizador = styled.p`
         color:#00838F;
         padding: 1rem;
         text-transform: uppercase;
@@ -29,26 +30,28 @@ const Result = ({cotization}) => {
         margin:0;
     `;
 
-    return ( 
-        (cotization === 0 ) 
-        ? <Message>Elije marca, año y tipo de seguro </Message> 
-        : (
-            <ResultCotizador>
-                <Transition
-                    component="p"
-                    className = "resultado"
-                >
-                    <CSSTransition
-                        classNames ="resultado"
-                        key={cotization}
-                        timeout={{ enter: 500, exit: 500}}
+    return (
+        (cotization === 0)
+            ? <Message>Elije marca, año y tipo de seguro </Message>
+            : (
+                <ResultCotizador>
+                    <TransitionGroup
+                        component="p"
+                        className="resultado"
                     >
-                        <TextCotizador>El total es: ${cotization}</TextCotizador>
-                    </CSSTransition>
-                </Transition>
-            </ResultCotizador>
-        ) 
-     );
+                        <CSSTransition
+                            classNames="resultado"
+                            key={cotization}
+                            timeout={{ enter: 500, exit: 500 }}
+                        >
+                            <TextCotizador>El total es: ${cotization}</TextCotizador>
+                        </CSSTransition>
+                    </TransitionGroup>
+                </ResultCotizador>
+            )
+    );
 }
- 
+Result.propType = {
+    cotization: PropTypes.number.isRequired,
+}
 export default Result;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 const ContentHeader = styled.header`
     background-color:#53FBDD;
@@ -21,6 +22,10 @@ const Header = ({ title }) => {
             <TextHeader>{title}</TextHeader>
         </ContentHeader>
     );
+}
+
+Header.propType = {
+    title: PropTypes.string.isRequired,
 }
 
 export default Header;

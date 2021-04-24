@@ -52,7 +52,7 @@ const Botton = styled.button`
     }
 `;
 
-const Form = ({setResume, setLoad}) => {
+const Form = ({ setResume, setLoad }) => {
 
     const [data, setData] = useState({
         marca: '',
@@ -112,7 +112,7 @@ const Form = ({setResume, setLoad}) => {
             setLoad(false);
 
             setResume({
-                cotization: result,
+                cotization: Number(result),
                 data
             });
         }, 3000);
@@ -122,7 +122,7 @@ const Form = ({setResume, setLoad}) => {
         <form
             onSubmit={handleSubmit}
         >
-            { error ? <Error>Todos los campos son obligatorios</Error>  : null }
+            { error ? <Error>Todos los campos son obligatorios</Error> : null}
             <Field>
                 <Label>Marca</Label>
                 <Select
@@ -182,7 +182,7 @@ const Form = ({setResume, setLoad}) => {
     );
 }
 
-Form.propType={
+Form.propType = {
     setLoad: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired
 }
